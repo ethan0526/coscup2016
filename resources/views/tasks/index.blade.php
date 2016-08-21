@@ -72,22 +72,22 @@
 								@if (! $task->done)
 								<!-- 完成 Task 按鈕 -->
 								<form action="{{ url('tasks/'.$task->id) }}" method="POST" class="form-inline">
-									
+
 									{{ csrf_field() }}
 									{{ method_field('PATCH') }}
-									
+
 									<button type="submit" class="btn btn-success">
 										<i class="fa fa-check"></i>完成
 									</button>
 								</form>
 								@endif
-								
+
 								<!-- 刪除 Task 按鈕 -->
 								<form action="{{ url('tasks/'.$task->id) }}" method="POST" class="form-inline">
-									
+
 									{{ csrf_field() }}
 									{{ method_field('DELETE') }}
-									
+
 									<button type="submit" class="btn btn-danger">
 										<i class="fa fa-trash"></i>刪除
 									</button>
@@ -97,6 +97,7 @@
 						@endforeach
 					</tbody>
 				</table>
+				{!! $tasks->render() !!}
 			</div>
 		</div>
 	</div>

@@ -12,10 +12,10 @@ class TasksController extends Controller
 {
     public function index()
     {
-        $tasks = Task::orderBy('created_at', 'DESC')->get();
+        $tasks = Task::orderBy('created_at', 'DESC')->paginate(5);
 
         $data = ['tasks' => $tasks];
-        
+
         return view('tasks.index', $data);
     }
 
@@ -24,9 +24,9 @@ class TasksController extends Controller
         $this->validate($request, [
             'name' => 'required',
         ]);
-        
+
         Task::create($request->all());
-        
+
     	return redirect('/');
     }
 
@@ -34,14 +34,14 @@ class TasksController extends Controller
     {
         $task->done = true;
         $task->save();
-        
+
     	return redirect('/');
     }
 
     public function destroy(Task $task)
     {
         $task->delete();
-        
+
     	return redirect('/');
     }
 }
